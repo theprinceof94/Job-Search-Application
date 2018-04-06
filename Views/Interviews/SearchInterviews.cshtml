@@ -1,0 +1,30 @@
+﻿@model JobSearchWebAppWilliams.Models.Interview
+@{
+    ViewBag.Title = "SearchInterviews";
+}
+@using (Html.BeginForm("SearchInterviews", "Interviews", FormMethod.Post))
+{
+    <h2>SearchInterviews</h2>
+
+    <hr />
+
+    @Html.Label("Company Name(optional): ")
+    @Html.DropDownList("companyID",(SelectList)ViewBag.Companies,String.Empty)
+    <hr />
+
+    @Html.Label("Interview Date: ")
+    @Html.EditorFor(model => model.InterviewDate)
+    <hr />
+
+    @Html.Label("Start Time: ")
+    @Html.EditorFor(model => model.StartTime)
+    <hr />
+
+    @Html.Label("End Time: ")
+    @Html.EditorFor(model => model.EndTime)
+    <hr />
+
+    <input type="submit" class="btn btn-default" value="Search"/>
+
+}
+

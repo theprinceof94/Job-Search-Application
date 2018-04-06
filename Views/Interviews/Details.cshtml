@@ -1,0 +1,66 @@
+﻿@model JobSearchWebAppWilliams.Models.Interview
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Interview</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.JobPosting.JobPostingID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.JobPosting.JobPostingID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Representative.FullName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Representative.FullName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Availability)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Availability)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.InterviewDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.InterviewDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.StartTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StartTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EndTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EndTime)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.InterviewID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

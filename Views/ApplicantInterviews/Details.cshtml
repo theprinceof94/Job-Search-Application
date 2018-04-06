@@ -1,0 +1,42 @@
+﻿@model JobSearchWebAppWilliams.Models.ApplicantInterview
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>ApplicantInterview</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Applicant.FullName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Applicant.FullName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Interview.RepresentativeID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Interview.RepresentativeID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ApplicantRequest)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ApplicantRequest)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ApplicantInterviewID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

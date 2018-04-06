@@ -1,0 +1,67 @@
+﻿@model IEnumerable<JobSearchWebAppWilliams.Models.ApplicantInterview>
+
+@{
+    ViewBag.Title = "List of Requested Interviews";
+}
+
+<h2>@ViewBag.Title</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Applicant.FullName)
+        </th>
+        <th>
+            Date
+        </th>
+        <th>
+            Start Time
+        </th>
+        <th>
+            End Time
+        </th>
+        <th>
+           Current Request Status
+        </th>
+        <th>
+            Change Request Status 
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model)
+{
+
+    using (Html.BeginForm("EditSave", "ApplicantInterviews", FormMethod.Post))
+    {
+
+        @Html.Hidden("ApplicantInterviewID", @item.ApplicantInterviewID)
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Applicant.FullName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Interview.InterviewDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Interview.StartTime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Interview.EndTime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ApplicantRequest)
+        </td>
+        <td>
+            @Html.DropDownList("ChangeRequestStatus", new SelectList(ViewBag.StatusOptions, "Value", "Text"))
+        </td>
+        <td>
+            @*@Html.ActionLink("Edit", "Edit", new { id=item.ApplicantInterviewID })*@
+            <input type="Submit"class="btn btn-default"value="Save" />
+        </td>
+    </tr>
+    }
+}
+
+</table>

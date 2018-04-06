@@ -1,0 +1,65 @@
+﻿@model IEnumerable<JobSearchWebAppWilliams.Models.ApplicantInterview>
+
+@{
+    ViewBag.Title = "List of Requested Interviews";
+}
+
+<h2>@ViewBag.Title</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Applicant.FullName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Interview.Representative.FullName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Interview.Representative.Company.CompanyName)
+        </th>
+        <th>
+            Date
+        </th>
+        <th>
+            Start Time
+        </th>
+        <th>
+            End Time
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ApplicantRequest)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Applicant.FullName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Interview.Representative.FullName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Interview.Representative.Company.CompanyName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Interview.InterviewDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Interview.StartTime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Interview.EndTime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ApplicantRequest)
+        </td>
+        <td>
+            @Html.ActionLink("Delete", "Delete", new { id=item.ApplicantInterviewID })
+        </td>
+    </tr>
+}
+
+</table>
