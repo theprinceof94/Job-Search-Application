@@ -1,0 +1,60 @@
+﻿using System.Data.Entity;
+using System.Security.Claims;
+using System.Threading.Tasks;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
+using System;
+
+namespace JobSearchWebAppWilliams.Models
+{
+    // You can add profile data for the user by adding more properties to your ApplicationUser class, please visit http://go.microsoft.com/fwlink/?LinkID=317594 to learn more.
+    public class ApplicationUser : IdentityUser
+    {
+        public string FullName { get; set; }
+
+        public ApplicationUser(string fullname, string email, string phonenumber)
+        {
+            this.FullName = fullname;
+            this.Email = email;
+            this.PhoneNumber = phonenumber;
+
+            //additional properties required
+            this.SecurityStamp = Guid.NewGuid().ToString();
+            PasswordHasher hasher = new PasswordHasher();
+            this.PasswordHash = hasher.HashPassword(fullname);
+            this.UserName = email;
+        }
+        public ApplicationUser()
+        {
+
+        }
+        public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
+        {
+            // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType
+            var userIdentity = await manager.CreateIdentityAsync(this, DefaultAuthenticationTypes.ApplicationCookie);
+            // Add custom user claims here
+            return userIdentity;
+        }
+    }
+
+    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
+    {
+        public ApplicationDbContext()
+            : base("DefaultConnection", throwIfV1Schema: false)
+        {
+        }
+
+        public static ApplicationDbContext Create()
+        {
+            return new ApplicationDbContext();
+        }
+
+        public DbSet<Applicant> Applicants { get; set; }
+        public DbSet<Representative> Representatives { get; set; }
+        public DbSet<Company> Companies { get; set; }
+        public DbSet<JobPosting> JobPostings { get; set; }
+        public DbSet<Interview> Interviews { get; set; }
+        public DbSet<ApplicantInterview> ApplicantInterviews { get; set; }
+
+    }
+}
